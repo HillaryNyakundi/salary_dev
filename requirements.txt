@@ -1,2 +1,2 @@
 scikit-learn==1.2.2
-matplotlib==3.8.8
+matplotlib==3.8.0
