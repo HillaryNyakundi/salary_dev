@@ -2,11 +2,12 @@ import streamlit as st
 from predict_page import show_predict_page
 from explore_page import show_explore_page
 
-# Define a class to hold session state
+# Define a session state class
 
 
 class SessionState:
     def __init__(self):
+        self.logged_in = False
         self.username = None
         self.password = None
 
@@ -16,20 +17,24 @@ session_state = SessionState()
 
 
 def login():
-    if session_state.username is None:
+    if not session_state.logged_in:
         session_state.username = st.text_input("Username")
         session_state.password = st.text_input("Password", type="password")
 
         if st.button("Login"):
             # Your authentication logic here
-            # Here, you can store the username and password in a database or some secure storage
-            # For simplicity, we'll just print them out
-            st.success("Login successful! Username: {}, Password: {}".format(
-                session_state.username, session_state.password))
+            # Here, you can validate the username and password
+            # For simplicity, we'll just assume any non-empty username and password are valid
+            if session_state.username and session_state.password:
+                session_state.logged_in = True
+                st.success("Login successful!")
+            else:
+                st.error("Invalid username or password")
     else:
         st.sidebar.write("Logged in as:", session_state.username)
         if st.sidebar.button("Log out"):
             # Clear session state upon logout
+            session_state.logged_in = False
             session_state.username = None
             session_state.password = None
             st.success("Logged out successfully!")
@@ -38,7 +43,7 @@ def login():
 def main():
     login()
 
-    if session_state.username is not None:
+    if session_state.logged_in:
         page = st.sidebar.selectbox(
             "Explore or Predict", ("Predict", "Explore"))
 
