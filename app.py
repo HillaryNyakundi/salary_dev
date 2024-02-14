@@ -8,7 +8,7 @@ def login():
 
     if st.sidebar.button("Login"):
         # Your authentication logic here
-        if username == "your_username" and password == "your_password":
+        if username == "Hillary" and password == "Seku1308":
             st.success("Login successful!")
             return True
         else:
