@@ -30,14 +30,6 @@ def login():
                 st.success("Login successful!")
             else:
                 st.error("Invalid username or password")
-    else:
-        st.sidebar.write("Logged in as:", session_state.username)
-        if st.sidebar.button("Log out"):
-            # Clear session state upon logout
-            session_state.logged_in = False
-            session_state.username = None
-            session_state.password = None
-            st.success("Logged out successfully!")
 
 
 def main():
