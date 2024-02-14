@@ -29,7 +29,6 @@ def login():
                 session_state.logged_in = True
                 session_state.username = username
                 session_state.password = password
-                st.success("Login successful!")
             else:
                 st.error("Invalid username or password")
     else:
