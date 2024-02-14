@@ -17,25 +17,24 @@ session_state = SessionState()
 
 
 def login():
-    if not session_state.logged_in:
-        username_placeholder = st.empty()
-        password_placeholder = st.empty()
-        login_button_placeholder = st.empty()
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
 
-        session_state.username = username_placeholder.text_input("Username")
-        session_state.password = password_placeholder.text_input(
-            "Password", type="password")
+    if st.button("Login"):
+        # Your authentication logic here
+        # Here, you can validate the username and password
+        # For simplicity, we'll just assume any non-empty username and password are valid
+        if username and password:
+            session_state.logged_in = True
+            session_state.username = username
+            session_state.password = password
+            st.success("Login successful!")
+        else:
+            st.error("Invalid username or password")
 
-        if login_button_placeholder.button("Login"):
-            # Your authentication logic here
-            # Here, you can validate the username and password
-            # For simplicity, we'll just assume any non-empty username and password are valid
-            if session_state.username and session_state.password:
-                session_state.logged_in = True
-                st.success("Login successful!")
-            else:
-                st.error("Invalid username or password")
-    else:
+
+def main():
+    if session_state.logged_in:
         st.sidebar.write("Logged in as:", session_state.username)
         if st.sidebar.button("Log out"):
             # Clear session state upon logout
@@ -43,19 +42,16 @@ def login():
             session_state.username = None
             session_state.password = None
             st.success("Logged out successfully!")
+    else:
+        login()
+        return
 
+    page = st.sidebar.selectbox("Explore or Predict", ("Predict", "Explore"))
 
-def main():
-    login()
-
-    if session_state.logged_in:
-        page = st.sidebar.selectbox(
-            "Explore or Predict", ("Predict", "Explore"))
-
-        if page == "Predict":
-            show_predict_page()
-        else:
-            show_explore_page()
+    if page == "Predict":
+        show_predict_page()
+    else:
+        show_explore_page()
 
 
 if __name__ == "__main__":
