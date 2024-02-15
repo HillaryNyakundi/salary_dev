@@ -1,8 +1,7 @@
 import streamlit as st
-from app import session_state
 
 
-def login():
+def login(session_state):
     st.title("Login")
 
     username = st.text_input("Username")
