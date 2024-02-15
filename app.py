@@ -16,40 +16,7 @@ class SessionState:
 session_state = SessionState()
 
 
-def login():
-    if not session_state.logged_in:
-        username_placeholder = st.empty()
-        password_placeholder = st.empty()
-        login_button_placeholder = st.empty()
-
-        username = username_placeholder.text_input("Username")
-        password = password_placeholder.text_input("Password", type="password")
-
-        if login_button_placeholder.button("Login"):
-            # Your authentication logic here
-            # Here, you can validate the username and password
-            # For simplicity, we'll just assume any non-empty username and password are valid
-            if username and password:
-                session_state.logged_in = True
-                session_state.username = username
-                session_state.password = password
-                st.success("Login successful!")
-            else:
-                st.error("Invalid username or password")
-
-    else:
-        st.sidebar.write("Logged in as:", session_state.username)
-        if st.sidebar.button("Log out"):
-            # Clear session state upon logout
-            session_state.logged_in = False
-            session_state.username = None
-            session_state.password = None
-            st.success("Logged out successfully!")
-
-
 def main():
-    login()
-
     if session_state.logged_in:
         page = st.sidebar.selectbox(
             "Explore or Predict", ("Predict", "Explore"))
@@ -58,6 +25,9 @@ def main():
             show_predict_page()
         else:
             show_explore_page()
+    else:
+        st.write("You are not logged in.")
+        st.write("Please log in to access the application.")
 
 
 if __name__ == "__main__":
