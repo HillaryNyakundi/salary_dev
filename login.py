@@ -2,7 +2,7 @@ import streamlit as st
 from app import session_state
 
 
-def show_login_page():
+def login():
     st.title("Login")
 
     username = st.text_input("Username")
@@ -18,7 +18,3 @@ def show_login_page():
             session_state.password = password
         else:
             st.error("Invalid username or password")
-
-
-if __name__ == "__main__":
-    show_login_page()
