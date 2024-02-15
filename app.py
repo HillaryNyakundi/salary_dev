@@ -2,19 +2,7 @@ import streamlit as st
 from predict_page import show_predict_page
 from explore_page import show_explore_page
 from login import login  # Importing the login functionality
-
-# Define a session state class
-
-
-class SessionState:
-    def __init__(self):
-        self.logged_in = False
-        self.username = None
-        self.password = None
-
-
-# Create a session state instance
-session_state = SessionState()
+from app import session_state
 
 
 def main():
@@ -29,6 +17,8 @@ def main():
             show_explore_page()
     else:
         login(session_state)  # Display the login page if not logged in
+        if session_state.logged_in:
+            st.experimental_rerun()  # Refresh the UI if user logs in
 
 
 if __name__ == "__main__":
