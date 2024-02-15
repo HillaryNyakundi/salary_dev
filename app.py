@@ -28,7 +28,7 @@ def main():
         else:
             show_explore_page()
     else:
-        login()  # Display the login page if not logged in
+        login(session_state)  # Display the login page if not logged in
 
 
 if __name__ == "__main__":
