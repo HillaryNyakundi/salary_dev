@@ -54,7 +54,6 @@ def show_explore_page():
        st.title("Explore Software Engineer Salaries")
        
        st.write(
-              """### Stack Overflow Developer Salary 2020"""
        )
        
        data = df["Country"].value_counts()
