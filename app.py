@@ -18,10 +18,14 @@ session_state = SessionState()
 
 def login():
     if not session_state.logged_in:
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
+        username_placeholder = st.empty()
+        password_placeholder = st.empty()
+        login_button_placeholder = st.empty()
 
-        if st.button("Login"):
+        username = username_placeholder.text_input("Username")
+        password = password_placeholder.text_input("Password", type="password")
+
+        if login_button_placeholder.button("Login"):
             # Your authentication logic here
             # Here, you can validate the username and password
             # For simplicity, we'll just assume any non-empty username and password are valid
@@ -29,8 +33,10 @@ def login():
                 session_state.logged_in = True
                 session_state.username = username
                 session_state.password = password
+                st.success("Login successful!")
             else:
                 st.error("Invalid username or password")
+
     else:
         st.sidebar.write("Logged in as:", session_state.username)
         if st.sidebar.button("Log out"):
