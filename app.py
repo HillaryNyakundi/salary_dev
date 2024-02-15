@@ -10,6 +10,7 @@ def logout():
     session_state.username = None
     session_state.password = None
     st.success("Logged out successfully!")
+    login(session_state) #Redirect to the login page after logging out
 
 
 def main():
