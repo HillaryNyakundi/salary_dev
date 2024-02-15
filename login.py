@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def login(session_state):
-    st.title("Login")
+    st.title("Hi, welcome to dev predict")
 
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
