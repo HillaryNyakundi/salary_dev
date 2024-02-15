@@ -15,5 +15,6 @@ def login(session_state):
             session_state.logged_in = True
             session_state.username = username
             session_state.password = password
+            st.experimental_rerun() # Refresh the UI
         else:
             st.error("Invalid username or password")
