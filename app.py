@@ -25,7 +25,7 @@ def main():
         elif page == "Logout":
             logout()
     else:
-        login()  # Display the login page if not logged in
+        login(session_state)  # Display the login page if not logged in
         if session_state.logged_in:
             st.experimental_rerun()  # Refresh the UI if user logs in
 
