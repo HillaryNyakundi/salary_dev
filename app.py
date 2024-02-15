@@ -2,7 +2,7 @@ import streamlit as st
 from predict_page import show_predict_page
 from explore_page import show_explore_page
 from login import login  # Importing the login functionality
-from app import session_state
+from session import session_state
 
 
 def main():
